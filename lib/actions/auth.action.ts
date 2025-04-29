@@ -95,8 +95,8 @@ export async function getCurrentUser(): Promise<User | null> {
        const decodedClaims = await auth.verifySessionCookie(sessionCookie, true);
 
        const userRecord = await db.
-         collection('users')CollectionReference<DocumentData, DocumentData>
-         .doc(decodedClaims.uid)DocumentReference<DocumentData, DocumentData>
+         collection('users')
+         .doc(decodedClaims.uid)
          .get();
 
          if(!userRecord.exists) return null;
