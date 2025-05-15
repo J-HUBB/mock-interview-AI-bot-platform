@@ -6,7 +6,7 @@ import InterviewCard from "../../components/InterviewCard";
 import { getInterviewsByUserId, getLatestInterviews } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 
-const Page = async () => {
+const Home = async () => {
   const user = await getCurrentUser();
 
   const [userInterviews, latestInterviews] = await Promise.all([
@@ -15,8 +15,8 @@ const Page = async () => {
   ]);
 
  
-  const hasPastInterviews = userInterviews?.length > 0;
-  const hasUpcomingInterviews = latestInterviews?.length > 0;
+  const hasPastInterviews = userInterviews?.length! > 0;
+  const hasUpcomingInterviews = latestInterviews?.length! > 0;
 
   return (
     <>
@@ -72,4 +72,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default Home;

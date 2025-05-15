@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-const Page = async ({ params }: RouteParams) => {
+const Feedback = async ({ params }: RouteParams) => {
   const { id } = await params;
   const user = await getCurrentUser();
 
@@ -114,4 +114,4 @@ const Page = async ({ params }: RouteParams) => {
   );
 };
 
-export default Page;
+export default Feedback;
