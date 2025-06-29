@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import InterviewCard from "../../components/InterviewCard";
+import InterviewCard from "@/components/InterviewCard";
 import { getInterviewsByUserId, getLatestInterviews } from "@/lib/actions/general.action";
 import { getCurrentUser } from "@/lib/actions/auth.action";
 

@@ -120,6 +120,8 @@ export async function isAuthenticated() {
     return !!user; // true -> boolean
 }
 
+
+
 export async function signOut() {
     const cookieStore = await cookies();
   

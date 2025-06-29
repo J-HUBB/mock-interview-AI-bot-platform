@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
+import { generator } from "@/constants"
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -118,12 +119,19 @@ const Agent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     if (type === "generate") {
-      await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
+      await vapi.start(
+        undefined,
+        {
         variableValues: {
           username: userName,
           userid: userId,
         },
-      });
+        clientMessages: ["transcript"],
+        serverMessages: [],
+      },
+      undefined,
+      generator
+    );
     } else {
       let formattedQuestions = "";
 
@@ -137,6 +145,8 @@ const Agent = ({
         variableValues: {
           questions: formattedQuestions,
         },
+        clientMessages: ["transcript"],
+        serverMessages: [],
       });
     }
   };
