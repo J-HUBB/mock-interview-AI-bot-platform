@@ -149,13 +149,13 @@ export const generator: CreateWorkflowDTO = {
             title: "type",
             description: "What type of the interview should it be? ",
             type: "string",
-            enum: ["behavioural", "technical", "mixed"],
+            enum: ["behavioral", "technical", "mixed"],
           },
         ],
       },
     },
     {
-      name: "apiRequest_1747470739045",
+      name: "apiRequest_1751208794748",
       type: "apiRequest",
       metadata: {
         position: {
@@ -245,7 +245,7 @@ export const generator: CreateWorkflowDTO = {
       },
     },
     {
-      name: "hangup_1747744730181",
+      name: "hangup_1751209897417",
       type: "hangup",
       metadata: {
         position: {
@@ -257,7 +257,7 @@ export const generator: CreateWorkflowDTO = {
   ],
   edges: [
     {
-      from: "apiRequest_1747470739045",
+      from: "apiRequest_1751208794748",
       to: "conversation_1747721261435",
       condition: {
         type: "ai",
@@ -274,7 +274,7 @@ export const generator: CreateWorkflowDTO = {
     },
     {
       from: "conversation_1747744490967",
-      to: "apiRequest_1747470739045",
+      to: "apiRequest_1751208794748",
       condition: {
         type: "ai",
         prompt: "",
@@ -282,7 +282,7 @@ export const generator: CreateWorkflowDTO = {
     },
     {
       from: "conversation_1747721261435",
-      to: "hangup_1747744730181",
+      to: "hangup_1751209897417",
       condition: {
         type: "ai",
         prompt: "",

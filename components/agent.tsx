@@ -132,9 +132,8 @@ const Agent = ({
       undefined,
       generator
     );
-    } else {
+   } else {
       let formattedQuestions = "";
-
       if (questions) {
         formattedQuestions = questions
           .map((question) => `- ${question}`)
