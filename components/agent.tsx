@@ -120,8 +120,7 @@ const Agent = ({
 
     if (type === "generate") {
       await vapi.start(
-        undefined,
-        process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!,
+        generator,
         {
           variableValues: {
             username: userName,
