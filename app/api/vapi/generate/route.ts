@@ -21,6 +21,9 @@ export async function POST(request: NextRequest) {
         Level: ${level}
         Tech Stack: ${techstack}
         Number of Questions: ${amount}
+        The questions are going to be read by a voice assistant so do not use "/" or "*" or any other special characters which might break the voice assistant.
+
+        Thank you! 
      `,
        });
 
