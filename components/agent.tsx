@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { AgentProps } from "@/types";
+import { AgentProps } from "@/types/index";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
@@ -81,9 +81,9 @@ function Agent({
   }, []);
 
   useEffect(() => {
-   /* if (messages.length > 0) {
-      setLastMessage(messages[messages.length - 1].content);
-    }
+  /*  if (messages.length > 0) {
+      setLatestMessage(messages[messages.length - 1].content);
+    } 
 
     const handleGenerateFeedback = async (messages: SavedMessage[]) => {
       console.log("handleGenerateFeedback");
@@ -127,8 +127,7 @@ function Agent({
   };
 
    const latestMessage = messages[messages.length - 1]?.content;
-   const isCallInactiveOrFinished =
-   callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
+   const isCallInactiveOrFinished = callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
 
   return (
     <>
@@ -176,17 +175,17 @@ function Agent({
       )}
 
       <div className="w-full flex justify-center">
-        {callStatus !== "ACTIVE" ? (
+        {callStatus !== CallStatus.ACTIVE ? (
           <button className="relative btn-call" onClick={handleCall}>
             <span
               className={cn(
                 "absolute animate-ping rounded-full opacity-75",
-                callStatus !== "CONNECTING" && "hidden"
+                callStatus !== CallStatus.CONNECTING && "hidden"
               )}
             />
             <span>{isCallInactiveOrFinished ? "Call" : ". . ."}</span>
             </button>
-        ) : (
+           ) : (
           <button className="btn-disconnect" onClick={handleDisconnect}>
             End
           </button>
