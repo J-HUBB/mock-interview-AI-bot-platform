@@ -156,7 +156,7 @@ export const generator: CreateWorkflowDTO = {
     },
     {
       name: "apiRequest_1751208794748",
-      type: "apiRequest",
+      type: "tool",
       metadata: {
         position: {
           x: -16.075937072883846,
@@ -246,7 +246,7 @@ export const generator: CreateWorkflowDTO = {
     },
     {
       name: "hangup_1751209897417",
-      type: "hangup",
+      type: "tool",
       metadata: {
         position: {
           x: 76.01267674000721,

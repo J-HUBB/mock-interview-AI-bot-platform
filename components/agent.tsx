@@ -24,15 +24,19 @@ interface SavedMessage {
 
 const ASSISTANT = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID;
 
-function Agent({
+const Agent = ({
   userName,
   userId,
-  type
- }: AgentProps) {
+  type,
+  interviewId,
+  feedbackId,
+  questions
+ }: AgentProps) => {
   const router = useRouter();
   const [callStatus, setCallStatus] = useState<CallStatus>(CallStatus.INACTIVE);
   const [messages, setMessages] = useState<SavedMessage[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [latestMessage, setLatestMessage] = useState<string>("");
 
   useEffect(() => {
     const onCallStart = () => {
@@ -81,7 +85,7 @@ function Agent({
   }, []);
 
   useEffect(() => {
-  /*  if (messages.length > 0) {
+    if (messages.length > 0) {
       setLatestMessage(messages[messages.length - 1].content);
     } 
 
@@ -101,17 +105,21 @@ function Agent({
         console.log("Error saving feedback");
         router.push("/");
       }
-    }; */
+    }; 
 
     if (callStatus === CallStatus.FINISHED) {
-      //if (type === "generate") {
+      if (type === "generate") {
         router.push("/");
+      } else {
+        handleGenerateFeedback(messages);
       }
-    }, [messages, callStatus, type, userId]);
+    }
+   }, [messages, callStatus, feedbackId, interviewId, router, type, userId]);
 
   const handleCall = async () => {
     setCallStatus(CallStatus.CONNECTING);
 
+    if(type === "generate") {
       await vapi.start(ASSISTANT, 
         {
           variableValues: {
@@ -119,15 +127,30 @@ function Agent({
             userId: userId,
           },
         });
-      };
+      } else {
+        let formattedQuestions = "";
+        if(questions){
+          formattedQuestions = questions
+          .map((question: any) => `- ${question}`)
+          .join("\n");
+        }
 
+         await vapi.start(interviewer, {
+        variableValues: {
+          questions: formattedQuestions,
+        },
+      });
+      }
+    };
+    
    const handleDisconnect = async () => {
     setCallStatus(CallStatus.FINISHED);
     vapi.stop();
   };
 
-   const latestMessage = messages[messages.length - 1]?.content;
-   const isCallInactiveOrFinished = callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
+  // const latestMessage = messages[messages.length - 1]?.content;
+   const isCallInactiveOrFinished = 
+   callStatus === CallStatus.INACTIVE || callStatus === CallStatus.FINISHED;
 
   return (
     <>
