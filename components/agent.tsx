@@ -4,11 +4,9 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { AgentProps } from "@/types/index";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
-import { generator } from "@/constants";
 
 enum CallStatus {
   INACTIVE = "INACTIVE",
@@ -55,13 +53,13 @@ const Agent = ({
       }
     };
 
-    const onSpeechStart = () => 
+    const onSpeechStart = () => {
       setIsSpeaking(true);
-    
+    };
 
-    const OnSpeechEnd = () => 
+    const OnSpeechEnd = () => {
       setIsSpeaking(false);
-    
+    };
 
     const onError = (error: Error) => {
       console.log("Error", error);
@@ -124,7 +122,7 @@ const Agent = ({
         {
           variableValues: {
             username: userName,
-            userId: userId,
+            userid: userId,
           },
         });
       } else {
